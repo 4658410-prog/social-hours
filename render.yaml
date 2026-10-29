@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: social-hours
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: DATABASE_URL
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
