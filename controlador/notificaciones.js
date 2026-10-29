@@ -20,6 +20,18 @@ async function asegurarTabla() {
   await conexion.query(
     "CREATE INDEX IF NOT EXISTS idx_notificaciones_nie ON notificaciones (nie)",
   );
+  /* Si la tabla ya existía sin valor por defecto en "fecha", las alertas quedaban
+     sin fecha (y se veían como 31 dic 1969). Se corrige una sola vez. */
+  try {
+    await conexion.query(
+      "ALTER TABLE notificaciones ALTER COLUMN fecha SET DEFAULT now()",
+    );
+    await conexion.query(
+      "UPDATE notificaciones SET fecha = now() WHERE fecha IS NULL",
+    );
+  } catch (error) {
+    console.error("No se pudo reparar la columna fecha:", error.message);
+  }
   tablaLista = true;
 }
 
@@ -31,7 +43,7 @@ async function guardarNotificacion({ nie, tipo, asunto, mensaje }) {
     if (!nieLimpio) return false;
     await asegurarTabla();
     await conexion.query(
-      "INSERT INTO notificaciones (nie, tipo, asunto, mensaje) VALUES ($1, $2, $3, $4)",
+      "INSERT INTO notificaciones (nie, tipo, asunto, mensaje, fecha) VALUES ($1, $2, $3, $4, now())",
       [nieLimpio, tipo || null, asunto || "", mensaje || ""],
     );
     return true;
@@ -61,7 +73,7 @@ const misNotificaciones = async (req, res) => {
 
     const r = await conexion.query(
       `SELECT id_notificacion, tipo, asunto, mensaje, leida,
-              to_char(fecha, 'YYYY-MM-DD"T"HH24:MI:SS') AS fecha
+              to_char(fecha::timestamptz AT TIME ZONE 'America/El_Salvador', 'YYYY-MM-DD"T"HH24:MI:SS') AS fecha
        FROM notificaciones
        WHERE trim(nie) = $1
        ORDER BY fecha DESC, id_notificacion DESC
