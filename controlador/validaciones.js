@@ -1,5 +1,3 @@
-/* controlador de validaciones */
-
 /* controlador de validaciones
    Una validación se puede emitir solo si el estudiante ya completó las horas sociales.
    La meta (150) es la misma que usa registro_estudiante.js para marcar "Completo". */
@@ -171,10 +169,24 @@ const emitir = async (req, res) => {
     }
 
     const estado = await valorEstadoValidacion();
+
+    /* id_registro es llave foránea a registros (asistencias):
+       se usa la asistencia más reciente del estudiante */
+    const reg = await conexion.query(
+      `SELECT r.id_registro
+       FROM registros r
+       JOIN estudiantes e ON e.id_estudiante = r.id_estudiante
+       WHERE trim(e.nie::text) = $1
+       ORDER BY r.fecha DESC, r.id_registro DESC
+       LIMIT 1`,
+      [nie],
+    );
+    const idRegistro = reg.rows[0] ? reg.rows[0].id_registro : null;
+
     const nueva = await conexion.query(
-      `INSERT INTO validaciones (estado, fecha_validacion, nie, horas)
-       VALUES ($1, CURRENT_DATE, $2, $3) RETURNING *`,
-      [estado, nie, horas],
+      `INSERT INTO validaciones (id_registro, estado, fecha_validacion, nie, horas)
+       VALUES ($1, $2, CURRENT_DATE, $3, $4) RETURNING *`,
+      [idRegistro, estado, nie, horas],
     );
     res.status(201).json({
       message: "Validación registrada",
