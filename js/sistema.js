@@ -1055,6 +1055,9 @@ async function cargarProyectos() {
 
       const alumnosFiltrados = data.filter((alumno) => {
         const servicioAlumno = normalizarTexto(alumno.servicio);
+        /* Sin servicio asignado no pertenece a ningún proyecto
+           (si no, "".includes() lo metería en todos) */
+        if (!servicioAlumno) return false;
         return (
           servicioAlumno.includes(nombreProyecto) ||
           nombreProyecto.includes(servicioAlumno)
