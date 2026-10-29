@@ -141,9 +141,19 @@ const obtenerPorGradoSeccion = async (req, res) => {
         [grado, seccion],
       );
 
+      /* NIE de alumnos que ya tienen registro en CUALQUIER sección: no deben salir
+         como "sin registro" en otra sección. */
+      const todosRegistros = await conexion.query(
+        "SELECT trim(nie::text) AS nie FROM registros_estudiantes",
+      );
+      const niesEnCualquierSeccion = new Set(
+        todosRegistros.rows.map((r) => r.nie).filter(Boolean),
+      );
+
       delGrado.rows.forEach((e) => {
         const nie = String(e.nie ?? "").trim();
         if (nie && niesConRegistro.has(nie)) return; /* ya salió arriba */
+        if (nie && niesEnCualquierSeccion.has(nie)) return; /* está en otra sección */
         lista.push({
           id_registro_estudiante: null,
           nombre: e.nombre || e.correo,
