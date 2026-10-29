@@ -117,6 +117,7 @@ const ICONOS_ALERTA = {
 };
 
 function fechaAlerta(texto) {
+  if (!texto) return "";
   const f = new Date(texto);
   if (isNaN(f)) return "";
   return f.toLocaleString("es-SV", { dateStyle: "medium", timeStyle: "short" });
