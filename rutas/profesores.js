@@ -4,14 +4,42 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 const conexion = require("../apis/conexion.js");
 
-/* Configuración del transporte de correo Nodemailer */
-const transporter = nodemailer.createTransport({
+/* Configuración del transporte de correo.
+   - Si existe BREVO_API_KEY se envía por la API HTTPS de Brevo (funciona en Render gratis,
+     que bloquea los puertos SMTP).
+   - Si no existe, se usa Gmail por SMTP como antes (funciona en tu PC). */
+const smtpGmail = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
+
+const transporter = {
+  async sendMail({ to, subject, html, from }) {
+    if (!process.env.BREVO_API_KEY) {
+      return smtpGmail.sendMail({ from, to, subject, html });
+    }
+    const respuesta = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "api-key": process.env.BREVO_API_KEY,
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "Social Hours", email: process.env.EMAIL_USER },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+      }),
+    });
+    if (!respuesta.ok) {
+      throw new Error(`Brevo ${respuesta.status}: ${await respuesta.text()}`);
+    }
+  },
+};
 
 /* Importamos el controlador de profesores */
 const profesorController = require("../controlador/profesor");
