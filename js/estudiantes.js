@@ -117,7 +117,6 @@ const ICONOS_ALERTA = {
 };
 
 function fechaAlerta(texto) {
-  if (!texto) return "";
   const f = new Date(texto);
   if (isNaN(f)) return "";
   return f.toLocaleString("es-SV", { dateStyle: "medium", timeStyle: "short" });
@@ -389,24 +388,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const destino = boton.getAttribute("data-target");
       mostrarSeccion(destino);
       if (destino === "Alertas") cargarAlertas();
-      function mostrarSeccion(id) {
-  secciones.forEach((seccion) => {
-    seccion.style.display = seccion.id === id ? "block" : "none";
-  });
-  botonesMenu.forEach((b) => {
-    b.classList.toggle("active", b.getAttribute("data-target") === id);
-  });
-}
-mostrarSeccion("Historial");
-
-botonesMenu.forEach((boton) => {
-  boton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const destino = boton.getAttribute("data-target");
-    mostrarSeccion(destino);
-    if (destino === "Alertas") cargarAlertas();
-  });
-});
     });
   });
 
@@ -449,5 +430,24 @@ botonesMenu.forEach((boton) => {
     cargarValidacion();
   }, 30000);
 });
+/*active barraElemento*/
+function mostrarSeccion(id) {
+  secciones.forEach((seccion) => {
+    seccion.style.display = seccion.id === id ? "block" : "none";
+  });
+  botonesMenu.forEach((b) => {
+    b.classList.toggle("active", b.getAttribute("data-target") === id);
+  });
+}
+mostrarSeccion("Historial");
 
-
+botonesMenu.forEach((boton) => {
+  boton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const destino = boton.getAttribute("data-target");
+    mostrarSeccion(destino);
+    if (destino === "Alertas") cargarAlertas();
+  });
+});
+/*end modo oscuro*/
+/*modo oscuro end*/
