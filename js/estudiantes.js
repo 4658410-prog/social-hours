@@ -1,5 +1,4 @@
 /* Página del estudiante: menú y horas reales desde la base de datos */
-/* Página del estudiante: menú y horas reales desde la base de datos */
 const API_BASE = "";
 
 function escaparHTML(valor) {
