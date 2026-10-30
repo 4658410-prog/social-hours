@@ -375,12 +375,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* Menú: muestra la sección elegida y marca su botón como activo */
   const botonesMenu = document.querySelectorAll(".barraElemento");
   const secciones = document.querySelectorAll("main section");
+
   function mostrarSeccion(id) {
     secciones.forEach((seccion) => {
       seccion.style.display = seccion.id === id ? "block" : "none";
     });
+    botonesMenu.forEach((b) => {
+      b.classList.toggle("active", b.getAttribute("data-target") === id);
+    });
+  }
+
+  /* Sección inicial: Historial; si no existe, la del primer botón del menú */
+  const idInicial = document.getElementById("Historial")
+    ? "Historial"
+    : botonesMenu[0]?.getAttribute("data-target");
+  mostrarSeccion(idInicial);
+
+  botonesMenu.forEach((boton) => {
+    boton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const destino = boton.getAttribute("data-target");
+      if (!destino) return;
+      mostrarSeccion(destino);
+      if (destino === "Alertas") cargarAlertas();
     });
   });
 
@@ -423,29 +443,3 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarValidacion();
   }, 30000);
 });
-
-function mostrarSeccion(id) {
-  secciones.forEach((seccion) => {
-    seccion.style.display = seccion.id === id ? "block" : "none";
-  });
-  botonesMenu.forEach((b) => {
-    b.classList.toggle("active", b.getAttribute("data-target") === id);
-  });
-}
-const idInicial = document.getElementById("Historial")
-  ? "Historial"
-  : botonesMenu[0]?.getAttribute("data-target");
-mostrarSeccion(idInicial);
-
-botonesMenu.forEach((boton) => {
-  boton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const destino = boton.getAttribute("data-target");
-    if (!destino) return;
-    mostrarSeccion(destino);
-    if (destino === "Alertas") cargarAlertas();
-  });
-});
-
-// Agregar clase active al botón inicial (Validaciones)
-
