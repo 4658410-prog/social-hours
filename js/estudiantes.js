@@ -431,23 +431,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 30000);
 });
 /*active barraElemento*/
-function mostrarSeccion(id) {
-  secciones.forEach((seccion) => {
-    seccion.style.display = seccion.id === id ? "block" : "none";
-  });
-  botonesMenu.forEach((b) => {
-    b.classList.toggle("active", b.getAttribute("data-target") === id);
-  });
-}
-mostrarSeccion("Historial");
-
-botonesMenu.forEach((boton) => {
-  boton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const destino = boton.getAttribute("data-target");
-    mostrarSeccion(destino);
-    if (destino === "Alertas") cargarAlertas();
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  const barraElemento = document.querySelector(".barraElemento");
+  if (barraElemento) {
+    barraElemento.classList.add("active");
+  }
+});
+/*end active barraElemento*/
+/*modo oscuro*/
+document.addEventListener("DOMContentLoaded", () => {
+  const modoOscuro = document.getElementById("modoOscuro");
+  if (modoOscuro) {
+    modoOscuro.addEventListener("click", () => {
+      document.body.classList.toggle("modo-oscuro");
+    });
+  }
 });
 /*end modo oscuro*/
 /*modo oscuro end*/
