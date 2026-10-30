@@ -287,11 +287,8 @@ body.swal2-shown {
     z-index: 4;
   }
   .botonGoogle {
-    margin-bottom: 20px;
-    width:30%;
-    heigth:300px;
-    padding:20px;
-  }
+    margin-bottom: 30px;
+  } 
   .panelContenedor p {
     font-size: 14px;
   }
