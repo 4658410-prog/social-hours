@@ -396,8 +396,8 @@ body.swal2-shown {
     font-size: 15px;
   }
   .loginContenedor h1 {
-    font-size: 55px;
-    padding-bottom: 40px;
+    font-size: 50px;
+    padding-bottom: 20px;
   }
   .loginContenedor span {
     font-size: 25px;
@@ -409,10 +409,10 @@ body.swal2-shown {
   }
   .loginContenedor .botonGoogle {
     font-size: 18px;
-    width: 80%;
+    width: 100%;
   }
   .botonGoogle img {
-    width: 28px;
+    width: 30px;
     height: 25px;
   }
   .loginContenido {
@@ -424,7 +424,6 @@ body.swal2-shown {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom:20px;
     gap: 10px;
   }
   .panelContenedor {
