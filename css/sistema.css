@@ -1265,8 +1265,10 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     margin: 15px auto;
   }
   .tarjeta-opcion {
+    display:gird;
+    grid-template-columns:2fr;
     width: 100%;
-    min-height: 180px;
+    min-height: 300px;
     padding: 15px 10px;
   }
   .tarjeta-icono {
