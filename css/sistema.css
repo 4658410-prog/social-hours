@@ -1293,15 +1293,17 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     border-radius: 15px;
   }
   #Alertas .grid-tarjetas {
-    width:100%;
-    min-height:150;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: none;
   }
   #Alertas .tarjeta-opcion {
-    min-height: 240px;
-    padding: 20px 15px;
+    width: 100%;
+    min-height: 160px;
+    padding: 10px 6px;
+    border-radius: 15px;
   }
   #Alertas .tarjeta-icono img {
     max-width: 100px;
