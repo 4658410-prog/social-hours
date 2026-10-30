@@ -526,12 +526,13 @@ border-radius: 38px 38px 0 0;
   }
   .infoServicio{
     display: grid;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     place-items: center;
+    box-shadow: 0 10px rgba(0, 0, 0,0.2);
   }
   .infoServicio p{
     width: 80%;
-    font-size: 24px;
+    font-size: 18px;
     margin-right: 0;
   }
   .apartadoBoton{
