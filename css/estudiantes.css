@@ -269,42 +269,45 @@ body {
    blanco más suave. Se activa con la clase "modo-oscuro" en el <body>
    ========================================================================== */
 body.modo-oscuro {
-  background-color: #e3e6eb;
+  background-color: #1a1a1abf;
 }
+
+/* Azul y naranja más oscuros */
 body.modo-oscuro .barraEstudiante {
-    background: linear-gradient(135deg, #704a0c, #da9525, #b85407);
+  background: linear-gradient(135deg, #704a0c, #da9525, #b85407);
   background-size: 200% 200%;
+  animation: moverFondo 5s ease infinite;
 }
 body.modo-oscuro .barraElemento {
   color: #ffffff;
 }
-body.modo-oscuro .barraElemento:hover {
-   color: #ffffff;
-}
 body.modo-oscuro .cabeceraEstudiante {
-  background: #031294;
+  background: #0b0b69;
 }
 body.modo-oscuro .tablaHistorial {
-  background: #031294;
+  background: #0b0b69;
 }
 body.modo-oscuro .menuDesplegable button,
 body.modo-oscuro .tablaHistorial table th,
 body.modo-oscuro .horaEstudiante table th {
-   background: #0b0b69;
+  background: #0b0b69;
   color: #ffffff;
 }
 body.modo-oscuro .menuDesplegable button:hover {
   background: #5a5a7a;
 }
+
+/* Blancos más suaves */
 body.modo-oscuro .menuDesplegable,
 body.modo-oscuro .tablaHistorial table tbody tr,
 body.modo-oscuro .horaEstudiante table tbody tr {
-    background: #3a3a5a;
-  color: #ffffff;
+  background: #e0e0e0;
+  color: #1a1a1a;
 }
 body.modo-oscuro .tablaHistorial table tbody tr:hover {
-  background: #cfe9ee;
+  background: #d0d0d0;
 }
+
 body.modo-oscuro .barraElemento:hover {
   border-bottom: 3px solid #05058b;
   border-left: 3px solid #05058b;
@@ -313,13 +316,24 @@ body.modo-oscuro .barraElemento:hover {
   color: #05058b;
   transform: translateY(-3px);
 }
-body.modo-oscuro.barraElemento.active {
+body.modo-oscuro .barraElemento.active {
   border-bottom: 3px solid #05058b;
   border-left: 3px solid #05058b;
   background: rgba(3, 6, 40, 0.3);
   border-radius: 20px;
   color: #05058b;
   transform: translateY(-3px);
+}
+@keyframes moverFondo {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @media screen and (max-width: 768px) and (orientation: portrait) {
   .tablaHistorial {
