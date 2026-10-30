@@ -1298,6 +1298,7 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     gap: 10px;
     width: 100%;
     max-width: none;
+    min-height: 0;
   }
   #Alertas .tarjeta-opcion {
     width: 100%;
@@ -1306,8 +1307,8 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     border-radius: 15px;
   }
   #Alertas .tarjeta-icono img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 85px;
+    max-height: 85px;
   }
   #Alertas .tarjeta-texto {
     font-size: 15px;
