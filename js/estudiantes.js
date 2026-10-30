@@ -117,7 +117,6 @@ const ICONOS_ALERTA = {
 };
 
 function fechaAlerta(texto) {
-  if (!texto) return "";
   const f = new Date(texto);
   if (isNaN(f)) return "";
   return f.toLocaleString("es-SV", { dateStyle: "medium", timeStyle: "short" });
@@ -375,30 +374,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Menú: muestra la sección elegida y marca su botón como activo */
   const botonesMenu = document.querySelectorAll(".barraElemento");
   const secciones = document.querySelectorAll("main section");
-
   function mostrarSeccion(id) {
     secciones.forEach((seccion) => {
       seccion.style.display = seccion.id === id ? "block" : "none";
     });
-    botonesMenu.forEach((b) => {
-      b.classList.toggle("active", b.getAttribute("data-target") === id);
-    });
   }
-
-  /* Sección inicial: Historial; si no existe, la del primer botón del menú */
-  const idInicial = document.getElementById("Historial")
-    ? "Historial"
-    : botonesMenu[0]?.getAttribute("data-target");
-  mostrarSeccion(idInicial);
-
+  mostrarSeccion("Historial");
   botonesMenu.forEach((boton) => {
     boton.addEventListener("click", (e) => {
       e.preventDefault();
       const destino = boton.getAttribute("data-target");
-      if (!destino) return;
       mostrarSeccion(destino);
       if (destino === "Alertas") cargarAlertas();
     });
@@ -443,3 +430,22 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarValidacion();
   }, 30000);
 });
+/*active barraElemento*/
+document.addEventListener("DOMContentLoaded", () => {
+  const barraElemento = document.querySelector(".barraElemento");
+  if (barraElemento) {
+    barraElemento.classList.add("active");
+  }
+});
+/*end active barraElemento*/
+/*modo oscuro*/
+document.addEventListener("DOMContentLoaded", () => {
+  const modoOscuro = document.getElementById("modoOscuro");
+  if (modoOscuro) {
+    modoOscuro.addEventListener("click", () => {
+      document.body.classList.toggle("modo-oscuro");
+    });
+  }
+});
+/*end modo oscuro*/
+/*modo oscuro end*/
