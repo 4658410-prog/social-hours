@@ -1258,7 +1258,6 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   }
   .grid-tarjetas {
     display: grid;
-    grid-template-rows:repeat(2,minmax(0,1fr));
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     width: 100%;
@@ -1267,7 +1266,7 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   }
   .tarjeta-opcion {
     width: 100%;
-    min-height: 300px;
+    min-height: 150px;
     padding: 15px 10px;
   }
   .tarjeta-icono {
@@ -1294,6 +1293,8 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     border-radius: 15px;
   }
   #Alertas .grid-tarjetas {
+    width:100%;
+    min-height:150;
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
