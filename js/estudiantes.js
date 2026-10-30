@@ -431,21 +431,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 30000);
 });
 /*active barraElemento*/
-document.addEventListener("DOMContentLoaded", () => {
-  const barraElemento = document.querySelector(".barraElemento");
-  if (barraElemento) {
-    barraElemento.classList.add("active");
+ 
+  const botonesMenu = document.querySelectorAll(".barraElemento");
+  const secciones = document.querySelectorAll("main section");
+
+  function activarBoton(boton) {
+    botonesMenu.forEach((b) => b.classList.remove("active"));
+    boton.classList.add("active");
   }
-});
-/*end active barraElemento*/
-/*modo oscuro*/
-document.addEventListener("DOMContentLoaded", () => {
-  const modoOscuro = document.getElementById("modoOscuro");
-  if (modoOscuro) {
-    modoOscuro.addEventListener("click", () => {
-      document.body.classList.toggle("modo-oscuro");
+
+  function mostrarSeccion(id) {
+    secciones.forEach((seccion) => {
+      seccion.style.display = seccion.id === id ? "block" : "none";
     });
   }
-});
-/*end modo oscuro*/
-/*modo oscuro end*/
+
+
+  const botonInicial =
+    document.querySelector('.barraElemento[data-target="Historial"]') ||
+    botonesMenu[0];
+  if (botonInicial) {
+    mostrarSeccion(botonInicial.getAttribute("data-target"));
+    activarBoton(botonInicial);
+  }
+
+  botonesMenu.forEach((boton) => {
+    boton.addEventListener("click", (e) => {
+      e.preventDefault();
+      activarBoton(boton);
+      const destino = boton.getAttribute("data-target");
+      if (destino) {
+        mostrarSeccion(destino);
+        if (destino === "Alertas") cargarAlertas();
+      }
+    });
+  });
