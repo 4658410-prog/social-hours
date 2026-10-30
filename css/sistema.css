@@ -1258,6 +1258,7 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   }
   .grid-tarjetas {
     display: grid;
+    grid-template-rows:repeat(2,minmax(0,1fr));
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     width: 100%;
@@ -1265,10 +1266,6 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
     margin: 15px auto;
   }
   .tarjeta-opcion {
-    display:flex;
-    justify-content:center;
-    aling-intem:center;
-    flex-direction:columns;
     width: 100%;
     min-height: 300px;
     padding: 15px 10px;
