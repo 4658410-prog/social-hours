@@ -246,13 +246,13 @@ body.swal2-shown {
 /* Adaptación vertical para celulares */
 @media screen and (min-width: 360px) and (max-width: 490px) and (orientation: portrait) {
  body {
-    height:95vh;
+    height:9vh;
     margin: 0;
     overflow-y:auto;
   }
   .loginContenedor {
     width: 100%;
-    height: 100%;
+    height: 120vh;
     overflow: hidden;
     padding: 0;
     border-radius: 0;
