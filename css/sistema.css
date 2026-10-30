@@ -1294,21 +1294,16 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   }
   #Alertas .grid-tarjetas {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    width: 100%;
-    max-width: none;
-    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
   #Alertas .tarjeta-opcion {
-    width: 100%;
-    min-height: 160px;
-    padding: 10px 6px;
-    border-radius: 15px;
+    min-height: 240px;
+    padding: 20px 15px;
   }
   #Alertas .tarjeta-icono img {
-    max-width: 85px;
-    max-height: 85px;
+    max-width: 100px;
+    max-height: 100px;
   }
   #Alertas .tarjeta-texto {
     font-size: 15px;
