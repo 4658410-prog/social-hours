@@ -423,6 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarValidacion();
   }, 30000);
 });
+
 function mostrarSeccion(id) {
   secciones.forEach((seccion) => {
     seccion.style.display = seccion.id === id ? "block" : "none";
@@ -431,12 +432,16 @@ function mostrarSeccion(id) {
     b.classList.toggle("active", b.getAttribute("data-target") === id);
   });
 }
-mostrarSeccion("Historial");
+const idInicial = document.getElementById("Historial")
+  ? "Historial"
+  : botonesMenu[0]?.getAttribute("data-target");
+mostrarSeccion(idInicial);
 
 botonesMenu.forEach((boton) => {
   boton.addEventListener("click", (e) => {
     e.preventDefault();
     const destino = boton.getAttribute("data-target");
+    if (!destino) return;
     mostrarSeccion(destino);
     if (destino === "Alertas") cargarAlertas();
   });
