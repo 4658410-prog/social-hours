@@ -317,7 +317,8 @@ body.modo-oscuro .tablaHistorial table tbody tr:hover {
 /* Menú lateral en modo oscuro: hover y activo */
 body.modo-oscuro .barraElemento:hover,
 body.modo-oscuro .barraElemento.active {
-  border: 3px solid #05058b;
+  border-bottom: 3px solid #05058b;
+  border-left: 3px solid #05058b;
   background: rgba(3, 6, 40, 0.3);
   border-radius: 20px;
   color: #05058b;
@@ -611,6 +612,17 @@ body.modo-oscuro .valEstTarjeta button,
 body.modo-oscuro .valEstBotones button {
   background: #031294;
 }
+body.modo-oscuro .barraElemento:hover,
+body.modo-oscuro .barraElemento.active {
+  border-bottom: 3px solid #05058b;
+  border-left: 3px solid #05058b;
+  border-top: 2px solid #05058b;
+  border-right: 2px solid #05058b;
+  background: rgba(3, 6, 40, 0.3);
+  border-radius: 20px;
+  color: #05058b;
+  transform: translateY(-3px);
+}
 @media screen and (max-width: 768px) and (orientation: portrait) {
   .valEstTarjeta {
     margin-left: 10%;
@@ -701,11 +713,17 @@ body.modo-oscuro .valEstBotones button {
     padding-bottom: 5px;
     font-size: 26px;
   }
-   .barraElemento:hover,
-  body.modo-oscuro .barraElemento:hover,
-  body.modo-oscuro .barraElemento.active {
-    transform: none;
-  }
+ body.modo-oscuro .barraElemento:hover,
+body.modo-oscuro .barraElemento.active {
+  border-bottom: 3px solid #05058b;
+  border-left: 3px solid #05058b;
+  border-top: 2px solid #05058b;
+  border-right: 2px solid #05058b;
+  background: rgba(3, 6, 40, 0.3);
+  border-radius: 20px;
+  color: #05058b;
+  transform: translateY(-3px);
+}
   .badgeAlertas {
     position: absolute;
     top: 6px;
