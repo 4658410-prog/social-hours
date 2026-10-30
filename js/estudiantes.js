@@ -1,4 +1,5 @@
 /* Página del estudiante: menú y horas reales desde la base de datos */
+/* Página del estudiante: menú y horas reales desde la base de datos */
 const API_BASE = "";
 
 function escaparHTML(valor) {
@@ -389,9 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const destino = boton.getAttribute("data-target");
       mostrarSeccion(destino);
       if (destino === "Alertas") cargarAlertas();
-    });
-  });
-  function mostrarSeccion(id) {
+      function mostrarSeccion(id) {
   secciones.forEach((seccion) => {
     seccion.style.display = seccion.id === id ? "block" : "none";
   });
@@ -409,6 +408,8 @@ botonesMenu.forEach((boton) => {
     if (destino === "Alertas") cargarAlertas();
   });
 });
+    });
+  });
 
   /* Alertas: clic en una alerta nueva la marca como leída; botón para marcar todas */
   const listaAlertas = document.getElementById("listaAlertas");
@@ -449,5 +450,5 @@ botonesMenu.forEach((boton) => {
     cargarValidacion();
   }, 30000);
 });
-mostrarSeccion("Historial");
+
 
