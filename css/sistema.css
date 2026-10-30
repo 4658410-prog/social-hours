@@ -1035,7 +1035,7 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   color: #666;
 }
 
-@media screen and (min-width: 360px) and (max-width: 480px) and (orientation: portrait) {
+@media screen and (max-width: 500px) and (orientation: portrait) {
   body {
     width: 100%;
     min-height: 100vh;
@@ -1387,7 +1387,7 @@ body.modo-oscuro .principalSistema .estiloTabla button.btnFilaAcciones {
   gap: 10px;
 }
 
-@media screen and (min-width: 760px) and (max-width: 1024px) and (orientation: portrait) {
+@media screen and (max-width: 1024px) and (orientation: portrait) {
   body {
     width: 100%;
     min-height: 100vh;
