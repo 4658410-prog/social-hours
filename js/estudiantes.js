@@ -389,6 +389,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const destino = boton.getAttribute("data-target");
       mostrarSeccion(destino);
       if (destino === "Alertas") cargarAlertas();
+      function mostrarSeccion(id) {
+  secciones.forEach((seccion) => {
+    seccion.style.display = seccion.id === id ? "block" : "none";
+  });
+  botonesMenu.forEach((b) => {
+    b.classList.toggle("active", b.getAttribute("data-target") === id);
+  });
+}
+mostrarSeccion("Historial");
+
+botonesMenu.forEach((boton) => {
+  boton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const destino = boton.getAttribute("data-target");
+    mostrarSeccion(destino);
+    if (destino === "Alertas") cargarAlertas();
+  });
+});
     });
   });
 
@@ -434,25 +452,4 @@ document.addEventListener("DOMContentLoaded", () => {
 mostrarSeccion("Historial");
 
 // Agregar clase active al botón inicial (Validaciones)
-const botonInicial = document.querySelector(
-  '.barraElemento[data-target="Historial"]',
-);
-if (botonInicial) {
-  botonInicial.classList.add("active");
-}
-otonesMenu.forEach(function (boton) {
-  boton.addEventListener("click", async function (e) {
-    e.preventDefault();
 
-    // Remover clase active de todos los botones
-    botonesMenu.forEach(function (b) {
-      b.classList.remove("active");
-    });
-
-    // Agregar clase active al botón clickeado
-    boton.classList.add("active");
-
-    const destino = boton.getAttribute("data-target");
-    await mostrarSeccion(destino);
-  });
-});
