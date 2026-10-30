@@ -245,86 +245,83 @@ body.swal2-shown {
 
 /* Adaptación vertical para celulares */
 @media screen and (min-width: 360px) and (max-width: 490px) and (orientation: portrait) {
-body {
+ body {
     height: 100vh;
+    height: 100dvh;
     margin: 0;
     overflow: hidden;
   }
   .loginContenedor {
+    position: fixed;
+    inset: 0;
     width: 100%;
-    height: 100vh;
+    height: auto;
+    min-height: 0;
+    max-width: 100%;
     overflow: hidden;
     padding: 0;
+    margin: 0;
     border-radius: 0;
     background: rgba(222, 221, 221, 0.413);
-    font-size: 15px;
   }
   .loginContenedor h1 {
     font-size: 25px;
-    padding-top: 5px;
+    margin-bottom: 10px;
+  }
+  .loginContenedor p {
+    font-size: 13px;
+    margin: 8px 0;
   }
   .loginContenedor span {
     font-size: 12px;
+  }
+  .loginContenedor img {
+    height: 14px;
   }
 
   .loginContenido {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 66%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow-y: auto;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
   }
-  .panelContenedor {
+  .loginContenedor form {
+    height: auto;
+    min-height: 0;
+    margin: auto 0;
+    padding: 20px 25px;
+  }
+  .loginContenedor .botonGoogle {
     width: 100%;
-    height: 50%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    border-radius: 100px 100px 0 0;
-    z-index: 4;
+    max-width: 320px;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 12px;
   }
-  .botonGoogle {
-    margin-bottom: 20px;
-    width:400px;
-    padding:20px;
-  }
-  .panelContenedor p {
-    font-size: 14px;
-  }
-  .registrar {
-    top: 50%;
-    opacity: 0;
-    z-index: 1;
-    transform: translateY(50%);
-  }
+
   .inicio {
     top: 0;
     opacity: 1;
     z-index: 3;
   }
-  .panelContenido {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px 30px;
-    text-align: center;
-    z-index: 1000;
-    transform: translateY(-20px);
-    transition: all 0.6s ease-in-out;
+  .registrar {
+    top: 34%;
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(50%);
   }
   .loginContenedor.active .registrar {
     transform: translateY(0);
     opacity: 1;
     animation: abajo 0.6s;
+  }
+  .loginContenedor.active .inicio {
+    transform: translateY(100%);
+    opacity: 0;
   }
   @keyframes abajo {
     from {
@@ -338,27 +335,39 @@ body {
       z-index: 4;
     }
   }
-  .loginContenedor.active .inicio {
-    transform: translateY(100%);
-    opacity: 0;
+
+  .panelContenedor {
+    width: 100%;
+    height: 34%;
+    top: 66%;
+    left: 0;
+    border-radius: 100px 100px 0 0;
+    z-index: 4;
   }
   .loginContenedor.active .panelContenedor {
-    transform: translateY(-100%);
+    transform: translateY(-194.12%);
     border-radius: 0 0 100px 100px;
   }
   .loginPanel {
-    transform: translateY(0);
-    transition: 0.6s;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
+    transform: translateY(0);
+    transition: 0.6s;
   }
   .loginContenedor.active .loginPanel {
-    transform:translateY(0);
+    transform: translateY(0);
   }
-  .panelContenido{
+  .panelContenido {
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 10px 25px calc(env(safe-area-inset-bottom, 0px) + 10px);
+  }
+  .panelContenido h1 {
+    font-size: 22px;
+    margin-bottom: 5px;
   }
   .panelIzquierda {
     transform: translateY(-200%);
@@ -366,18 +375,11 @@ body {
   .loginContenedor.active .panelIzquierda {
     transform: translateY(0);
   }
-
   .panelDerecha {
-    top: 20px;
     transform: translateY(0);
   }
   .loginContenedor.active .panelDerecha {
     transform: translateY(200%);
-  }
-
-  button:hover {
-    transform: scale(1.2);
-    transition: 1s;
   }
 }
 @media screen and (min-width: 650px) and (max-width: 1024px) and (orientation: portrait) {
