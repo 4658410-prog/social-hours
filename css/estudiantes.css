@@ -498,14 +498,12 @@ body.modo-oscuro .alertasEncabezado h2 {
 }
 body.modo-oscuro .btnLeerTodas {
   background: #031294;
-}
-@media screen  and(min-width:360px) and (max-width: 768px) and (orientation: portrait) {
+
   .alertasEncabezado,
   .listaAlertas {
     margin-left: 10%;
     width: 80%;
   }
-}
 
 /* ==========================================================================
    VALIDACIÓN DEL ESTUDIANTE (misma tarjeta que en sistema.html; solo aparece
@@ -645,8 +643,7 @@ body.modo-oscuro .valEstContenido h1 {
 body.modo-oscuro .valEstTarjeta button,
 body.modo-oscuro .valEstBotones button {
   background: #031294;
-}
-@media screen and (min-width:360px) and (max-width: 768px) and (orientation: portrait) {
+
   .valEstTarjeta {
     margin-left: 10%;
     width: 80%;
