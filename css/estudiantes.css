@@ -311,6 +311,8 @@ body.modo-oscuro .tablaHistorial table tbody tr:hover {
 body.modo-oscuro .barraElemento:hover {
   border-bottom: 3px solid #05058b;
   border-left: 3px solid #05058b;
+  border-top: 3px solid #05058b;
+  border-right: 3px solid #05058b;
   background: rgba(3, 6, 40, 0.3);
   border-radius: 20px;
   color: #05058b;
@@ -319,6 +321,8 @@ body.modo-oscuro .barraElemento:hover {
 body.modo-oscuro .barraElemento.active {
   border-bottom: 3px solid #05058b;
   border-left: 3px solid #05058b;
+  border-top: 3px solid #05058b;
+  border-right: 3px solid #05058b;
   background: rgba(3, 6, 40, 0.3);
   border-radius: 20px;
   color: #05058b;
