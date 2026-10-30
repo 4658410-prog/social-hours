@@ -347,7 +347,7 @@ body.modo-oscuro .barraElemento.active {
     background-position: 0% 50%;
   }
 }
-@media screen and (max-width: 768px) and (orientation: portrait) {
+@media screen and (min-width:360px) and (max-width: 768px) and (orientation: portrait) {
   .tablaHistorial {
     margin-left: 10%;
     width: 80%;
@@ -499,7 +499,7 @@ body.modo-oscuro .alertasEncabezado h2 {
 body.modo-oscuro .btnLeerTodas {
   background: #031294;
 }
-@media screen and (max-width: 768px) and (orientation: portrait) {
+@media screen  and(min-width:360px) and (max-width: 768px) and (orientation: portrait) {
   .alertasEncabezado,
   .listaAlertas {
     margin-left: 10%;
@@ -646,7 +646,7 @@ body.modo-oscuro .valEstTarjeta button,
 body.modo-oscuro .valEstBotones button {
   background: #031294;
 }
-@media screen and (max-width: 768px) and (orientation: portrait) {
+@media screen and (min-width:360px) and (max-width: 768px) and (orientation: portrait) {
   .valEstTarjeta {
     margin-left: 10%;
     width: 80%;
@@ -663,7 +663,7 @@ body.modo-oscuro .valEstBotones button {
    TELÉFONOS Y TABLETS (igual que sistema.html): cabecera fija arriba y el menú
    como barra inferior con icono sobre el texto
    ========================================================================== */
-@media screen and (max-width: 1024px) and (orientation: portrait) {
+@media screen and (min-width:600px) and (max-width: 1024px) and (orientation: portrait) {
   body {
     width: 100%;
     min-height: 100vh;
