@@ -1550,6 +1550,7 @@ function CerrarTarjeta() {
   tarjetaValidacion.style.display = "none";
 }
 
+
 /* Registra la validación en la base de datos y descarga el documento ya lleno */
 async function abrirArchivoWord() {
   if (!datosValidacion || !datosValidacion.completo) return;
@@ -1573,51 +1574,85 @@ async function abrirArchivoWord() {
     return;
   }
 
-  const contenido = `
-    <html xmlns:o='urn:schemas-microsoft-com:office:office'
-          xmlns:w='urn:schemas-microsoft-com:office:word'
-          xmlns='http://www.w3.org/TR/REC-html40'>
-    <head>
-      <meta charset="utf-8">
-      <title>Validación de Horas Sociales</title>
-      <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-        h1 { color: #0623ff; text-align: center; margin-bottom: 30px; }
-        .info { margin: 20px 0; }
-        .info p { margin: 15px 0; font-size: 16px; }
-        .campo { border-bottom: 2px solid #000; display: inline-block; min-width: 200px; padding: 0 10px; }
-        .firma { margin-top: 80px; }
-      </style>
-    </head>
-    <body>
-      <h1>VALIDACIÓN DE HORAS SOCIALES</h1>
-      <div class="info">
-        <p><strong>Nombre del estudiante:</strong> <span class="campo">${escaparHTML(d.nombre)}</span></p>
-        <p><strong>NIE:</strong> <span class="campo">${escaparHTML(d.nie)}</span></p>
-        <p><strong>Horas completadas:</strong> <span class="campo">${escaparHTML(d.horas)}</span></p>
-        <p><strong>Fecha de finalización:</strong> <span class="campo">${escaparHTML(fechaLarga())}</span></p>
-        <p><strong>Proyecto/Servicio Social:</strong> <span class="campo">${escaparHTML(d.servicio || "")}</span></p>
-      </div>
-      <div class="firma">
-        <p>_________________________</p>
-        <p><strong>Firma del Coordinador</strong></p>
-        <p>Fecha: <span class="campo"></span></p>
-      </div>
-      <div style="margin-top: 40px; border-top: 2px solid #000; padding-top: 20px;">
-        <p>Este documento certifica que el estudiante ha completado satisfactoriamente sus horas sociales.</p>
-      </div>
-    </body>
-    </html>`;
+  const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle } =
+    docx;
 
-  const blob = new Blob(["\ufeff", contenido], { type: "application/msword" });
+  const linea = (etiqueta, valor) =>
+    new Paragraph({
+      spacing: { after: 240 },
+      children: [
+        new TextRun({ text: etiqueta + " ", bold: true, size: 24 }),
+        new TextRun({ text: String(valor ?? ""), size: 24 }),
+      ],
+    });
+
+  const documento = new Document({
+    styles: { default: { document: { run: { font: "Arial" } } } },
+    sections: [
+      {
+        children: [
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { after: 480 },
+            children: [
+              new TextRun({
+                text: "VALIDACIÓN DE HORAS SOCIALES",
+                bold: true,
+                size: 36,
+                color: "0623FF",
+              }),
+            ],
+          }),
+          linea("Nombre del estudiante:", d.nombre),
+          linea("NIE:", d.nie),
+          linea("Horas completadas:", d.horas),
+          linea("Fecha de finalización:", fechaLarga()),
+          linea("Proyecto/Servicio Social:", d.servicio || ""),
+
+          new Paragraph({
+            spacing: { before: 1200 },
+            children: [new TextRun("_________________________")],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({ text: "Firma del Coordinador", bold: true }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { after: 600 },
+            children: [new TextRun("Fecha: ")],
+          }),
+
+          new Paragraph({
+            border: {
+              top: {
+                style: BorderStyle.SINGLE,
+                size: 12,
+                color: "000000",
+                space: 8,
+              },
+            },
+            children: [
+              new TextRun(
+                "Este documento certifica que el estudiante ha completado satisfactoriamente sus horas sociales.",
+              ),
+            ],
+          }),
+        ],
+      },
+    ],
+  });
+
+  /* Se crea el archivo .docx y se descarga */
+  const blob = await Packer.toBlob(documento);
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "Validacion_Horas_Sociales_" + d.nie + ".doc";
+  link.download = "Validacion_Horas_Sociales_" + d.nie + ".docx";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 
   /* refresca la lista para que salga marcado "(ya validado)" */
   cargarCompletosValidacion(d.nie);
