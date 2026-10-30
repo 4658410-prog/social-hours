@@ -431,3 +431,22 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarValidacion();
   }, 30000);
 });
+/*active barraElemento*/
+document.addEventListener("DOMContentLoaded", () => {
+  const barraElemento = document.querySelector(".barraElemento");
+  if (barraElemento) {
+    barraElemento.classList.add("active");
+  }
+});
+/*end active barraElemento*/
+/*modo oscuro*/
+document.addEventListener("DOMContentLoaded", () => {
+  const modoOscuro = document.getElementById("modoOscuro");
+  if (modoOscuro) {
+    modoOscuro.addEventListener("click", () => {
+      document.body.classList.toggle("modo-oscuro");
+    });
+  }
+});
+/*end modo oscuro*/
+/*modo oscuro end*/
