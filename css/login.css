@@ -244,7 +244,7 @@ body.swal2-shown {
 }
 
 /* Adaptación vertical para celulares */
-@media screen and (min-width: 360px) and (max-width: 480px) and (orientation: portrait) {
+@media screen and (min-width: 360px) and (max-width: 520px) and (orientation: portrait) {
   body {
     height: 100vh;
     margin: 0;
