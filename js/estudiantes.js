@@ -431,22 +431,28 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarValidacion();
   }, 30000);
 });
-/*active barraElemento*/
-document.addEventListener("DOMContentLoaded", () => {
-  const barraElemento = document.querySelector(".barraElemento");
-  if (barraElemento) {
-    barraElemento.classList.add("active");
-  }
-});
-/*end active barraElemento*/
-/*modo oscuro*/
-document.addEventListener("DOMContentLoaded", () => {
-  const modoOscuro = document.getElementById("modoOscuro");
-  if (modoOscuro) {
-    modoOscuro.addEventListener("click", () => {
-      document.body.classList.toggle("modo-oscuro");
+mostrarSeccion("Historial");
+
+// Agregar clase active al botón inicial (Validaciones)
+const botonInicial = document.querySelector(
+  '.barraElemento[data-target="Historial"]',
+);
+if (botonInicial) {
+  botonInicial.classList.add("active");
+}
+otonesMenu.forEach(function (boton) {
+  boton.addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    // Remover clase active de todos los botones
+    botonesMenu.forEach(function (b) {
+      b.classList.remove("active");
     });
-  }
+
+    // Agregar clase active al botón clickeado
+    boton.classList.add("active");
+
+    const destino = boton.getAttribute("data-target");
+    await mostrarSeccion(destino);
+  });
 });
-/*end modo oscuro*/
-/*modo oscuro end*/
