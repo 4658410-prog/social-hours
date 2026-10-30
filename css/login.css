@@ -271,7 +271,7 @@ body.swal2-shown {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 50vh;
+    height: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -288,6 +288,8 @@ body.swal2-shown {
   }
   .botonGoogle {
     margin-bottom: 20px;
+    width:200px;
+    padding:20px;
   }
   .panelContenedor p {
     font-size: 14px;
